@@ -4,9 +4,9 @@
 #include "cell.h"
 #include <vector>
 
-#define ROWS 100
-#define COLS 100
-#define SIZE  10
+#define ROWS  80
+#define COLS  50
+#define SIZE  15
 
 class Board {
 private:
