@@ -58,8 +58,8 @@ void Board::update() {
 }
 
 void Board::drawCells() const {
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLS; ++j) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
             int x = i * SIZE;
             int y = j * SIZE;
             if (grid[i][j].getStatus()) {
