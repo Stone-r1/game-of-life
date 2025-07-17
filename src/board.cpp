@@ -1,4 +1,5 @@
 #include "board.h"
+#include "raylib.h"
 #include <cstdlib>
 
 
@@ -29,13 +30,13 @@ void Board::toggleCell(int x, int y) {
 }
 
 const int rowDir[8] = {-1, 0, 1, 1, 1, 0, -1, -1}, colDir[8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-int countNeighbors(std::vector<std::vector<Cell>>& grid, int row, int col) {
+int countNeighbors(const std::vector<std::vector<Cell>>& grid, int row, int col) {
     int count = 0;
     for (int d = 0; d < 8; d++) {
         int newRow = row + rowDir[d];
         int newCol = col + colDir[d];
-        if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS || grid[newRow][newCol].getStatus()) continue;
-        count++; 
+        if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS) continue;
+        if (grid[newRow][newCol].getStatus()) count++; 
     }
     return count;
 }
@@ -57,5 +58,15 @@ void Board::update() {
 }
 
 void Board::drawCells() const {
-
+    for (int i = 0; i < ROWS; ++i) {
+        for (int j = 0; j < COLS; ++j) {
+            int x = i * SIZE;
+            int y = j * SIZE;
+            if (grid[i][j].getStatus()) {
+                DrawRectangle(x, y, SIZE, SIZE, WHITE);
+            } else {
+                DrawRectangleLines(x, y, SIZE, SIZE, DARKGRAY);
+            }
+        }
+    }
 }
