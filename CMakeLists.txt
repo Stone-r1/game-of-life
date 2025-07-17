@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.12)
-project(gameOfLife C)
+project(gameOfLife CXX)
 
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(raylib REQUIRED)
 
 set(SOURCES
-    src/main.c
+    src/main.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
