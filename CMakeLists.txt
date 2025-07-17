@@ -8,6 +8,7 @@ find_package(raylib REQUIRED)
 
 set(SOURCES
     src/main.cpp
+    src/cell.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
