@@ -29,7 +29,7 @@ Read more [here.](https://rustwasm.github.io/book/game-of-life/rules.html)
 
 ## Clone & Build
 ```bash
-git clone https://github.com/Stone-r1/gameOfLife.git 
+git clone https://github.com/Stone-r1/game-of-life.git
 cd gameOfLife
 mkdir build
 cd build
