@@ -18,12 +18,20 @@ int main() {
         Vector2 mouse = GetMousePosition();
 
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            bar.handleButtonClick(mouse);
+            if (bar.handleButtonClick(mouse)) {
+                board.randomize();
+            }
         }
 
         paused = !bar.getButtonStatus();
 
         if (paused && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            int x = mouse.x / SIZE;
+            int y = mouse.y / SIZE;
+            board.toggleCell(x, y);
+        }
+
+        if (paused && (IsMouseButtonDown(MOUSE_LEFT_BUTTON))) {
             int x = mouse.x / SIZE;
             int y = mouse.y / SIZE;
             board.toggleCell(x, y);

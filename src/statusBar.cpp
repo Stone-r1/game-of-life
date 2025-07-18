@@ -8,20 +8,35 @@ bool StatusBar::getButtonStatus() const {
     return isRunning;
 }
 
-void StatusBar::handleButtonClick(Vector2 mousePos) {
-    if (CheckCollisionPointRec(mousePos, button)) {
+bool StatusBar::handleButtonClick(Vector2 mousePos) {
+    if (!CheckCollisionPointRec(mousePos, button)) return false;
+
+    Rectangle pauseButton = {button.x, button.y, button.width / 2, button.height};
+    Rectangle randomizeButton = {button.x + button.width / 2, button.y, button.width / 2, button.height};
+
+    if (CheckCollisionPointRec(mousePos, pauseButton)) {
         isRunning = !isRunning;
+        return false;
     }
+    
+    if (CheckCollisionPointRec(mousePos, randomizeButton)) {
+        return true; 
+    }
+
+    return false;
 }
 
-void StatusBar::draw() const {
-    Color buttonColor = isRunning ? GREEN : RED;
-    const char* buttonText = isRunning ? "Running" : "Paused";
+void StatusBar::draw() const { 
+    Rectangle pauseButton = {button.x, button.y, button.width / 2, button.height};
+    Rectangle randomizeButton = {button.x + button.width / 2, button.y, button.width / 2, button.height};
 
-    DrawRectangleRec(button, buttonColor);
-    DrawText(buttonText,
-             button.x + 10,
-             button.y + button.height / 4,
-             20,
-             WHITE);
+    Color pauseButtonColor = isRunning ? GREEN : RED;
+    const char* pauseButtonText = isRunning ? "Running" : "Paused";
+    const char* randomizeButtonText = "Randomize";
+
+    DrawRectangleRec(pauseButton, pauseButtonColor);
+    DrawText(pauseButtonText, pauseButton.x + 10, pauseButton.y + pauseButton.height / 4, 20, WHITE);
+
+    DrawRectangleRec(randomizeButton, GRAY);
+    DrawText(randomizeButtonText, randomizeButton.x + 10, randomizeButton.y + randomizeButton.height / 4, 20, WHITE);
 }
