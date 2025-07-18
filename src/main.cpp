@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "board.h"
+#include "statusBar.h"
 
 int main() {
     const int width = ROWS * SIZE;
@@ -9,10 +10,25 @@ int main() {
     SetTargetFPS(10);
 
     Board board;
+    StatusBar bar(0, 0, width, ROWS - COLS);
     board.initializeBoard();
     bool paused = true;
 
-    while(!WindowShouldClose()) {
+    while(!WindowShouldClose()) { 
+        Vector2 mouse = GetMousePosition();
+
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            bar.handleButtonClick(mouse);
+        }
+
+        paused = !bar.getButtonStatus();
+
+        if (paused && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            int x = mouse.x / SIZE;
+            int y = mouse.y / SIZE;
+            board.toggleCell(x, y);
+        }
+
         if (!paused) {
             board.update();
         }
@@ -20,6 +36,7 @@ int main() {
         BeginDrawing();
             ClearBackground(BLACK);
             board.drawCells();
+            bar.draw();
         EndDrawing();
     }
 }
