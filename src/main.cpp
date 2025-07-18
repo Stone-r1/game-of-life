@@ -18,8 +18,11 @@ int main() {
         Vector2 mouse = GetMousePosition();
 
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            if (bar.handleButtonClick(mouse)) {
+            int arg = bar.handleButtonClick(mouse);
+            if (arg == 1) {
                 board.randomize();
+            } else if (arg == 2) {
+                board.clearBoard();
             }
         }
 

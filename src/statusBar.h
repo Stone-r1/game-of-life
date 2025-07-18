@@ -11,7 +11,7 @@ private:
 public:
     StatusBar(float x, float y, float width, float height);
     bool getButtonStatus() const;
-    bool handleButtonClick(Vector2 mousePos);
+    int handleButtonClick(Vector2 mousePos);
     void draw() const;
 };
 

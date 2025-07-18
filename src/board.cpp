@@ -70,3 +70,11 @@ void Board::drawCells() const {
         }
     }
 }
+
+void Board::clearBoard() {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            grid[i][j].setStatus(false);
+        }
+    }
+}

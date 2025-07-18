@@ -19,6 +19,7 @@ public:
     void toggleCell(int x, int y);
     void update();
     void drawCells() const;
+    void clearBoard();
 };  
 
 #endif
