@@ -16,7 +16,7 @@ Read more [here.](https://rustwasm.github.io/book/game-of-life/rules.html)
 
 ## Showcase
 
-[!GIF](gif/gif.gif)
+![GIF](gif/gif.gif)
 
 ---
 
